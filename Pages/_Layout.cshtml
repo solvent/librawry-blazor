@@ -1,0 +1,46 @@
+﻿@using Microsoft.AspNetCore.Components.Web
+@namespace librawry.blazor.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Librawry</title>
+	<style>
+		* { margin: 0; padding: 0; box-sizing: border-box; }
+		body { color: #657b83; background-color: #fdf6e3; margin: 8px; font-size: 16px; }
+		a, a:active, a:link, a:visited, a:hover { color: #268bd2; }
+		code { color: #d33682; display: block; }
+		code > small { background-color: #eee8d5; padding: 0 4px; }
+		small { font-size: 12px; }
+		h1, h2 { color: #586e75; margin-block-start: 8px; }
+		*:focus { outline: #d33682 2px dashed; outline-offset: 2px; }
+		input[type="search"], button, label { margin-right: 4px; line-height: 24px; }
+		input[type="search"], button { border: #657b83 1px solid; padding: 0 4px; }
+		ul { margin-block-start: 8px; margin-block-end: 8px; }
+		ul.search-results { list-style-type: none; }
+		ul.search-results li { margin-bottom: 8px; }
+		ul.search-results li > a { margin-bottom: 4px; }
+		ul.episodes-list { list-style-type: disc; padding-inline-start: 16px; }
+		ul.episodes-list li { margin-bottom: 8px; overflow-wrap: break-word; }
+		p { margin-block-start: 16px; margin-block-end: 16px; }
+		.skipnav { margin-bottom: 8px; }
+		.skipnav a { position: absolute; left: -10px; width: 0; height: 0; overflow: hidden; }
+		.skipnav a:focus, .skipnav a:active { position: static; left: 0; width: auto; height: auto; overflow: visible; }
+		.validation-summary-errors { margin-top: 24px; }
+		.validation-summary-errors ul li { list-style-type: disc; margin: 16px; }
+	</style>
+	<base href="~/" />
+	<component type="typeof(HeadOutlet)" render-mode="ServerPrerendered" />
+</head>
+
+<body>
+	@RenderBody()
+
+	<script src="_framework/blazor.server.js"></script>
+</body>
+
+</html>

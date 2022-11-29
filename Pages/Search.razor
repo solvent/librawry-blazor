@@ -1,0 +1,51 @@
+@page "/search"
+
+@using librawry.portable;
+@using librawry.portable.repo.titles;
+@inject IUnitOfWork unitOfWork;
+
+@if (@ListResponse == null)
+{
+	<div>Loading...</div>
+}
+else
+{
+	<h1>Search results for &ldquo; @QueryText &rdquo;</h1>
+
+	@if (@ListResponse.Any())
+	{
+		<ul class="search-results">
+			@foreach (var item in @ListResponse)
+			{
+				<li>
+					<a href="/details?id=@item.Id">@item.Name</a>
+					<code>
+						@foreach (var tag in item.Tags)
+						{
+							<small>@tag.Name</small>
+						}
+					</code>
+				</li>
+			}
+		</ul>
+	}
+	else
+	{
+		<p>Nothing is found</p>
+	}
+
+}
+
+@code {
+	[Parameter]
+	[SupplyParameterFromQuery(Name = "search")]
+	public string QueryText { get; set; } = "";
+
+	private IEnumerable<ListResponse>? ListResponse;
+
+	protected override async Task OnInitializedAsync() {
+		ListResponse = await unitOfWork.TitleRepository.GetList(new ListRequest {
+			Search = QueryText
+		});
+	}
+}

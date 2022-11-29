@@ -1,0 +1,17 @@
+@inject NavigationManager Navigation
+
+<form @onsubmit="DoSearch" role="search">
+	<label for="search">Search</label>
+	<input type="search" id="search" name="search" @bind="QueryText">
+	<button>Find</button>
+</form>
+
+@code {
+	[Parameter]
+	[SupplyParameterFromQuery(Name = "search")]
+	public string QueryText { get; set; } = "";
+
+	private void DoSearch() {
+		Navigation.NavigateTo($"/search?search={QueryText}");
+	}
+}
