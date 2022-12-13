@@ -43,7 +43,7 @@ else
 
 	private IEnumerable<ListResponse>? ListResponse;
 
-	protected override async Task OnInitializedAsync() {
+	protected override async Task OnParametersSetAsync() {
 		ListResponse = await unitOfWork.TitleRepository.GetList(new ListRequest {
 			Search = QueryText
 		});
