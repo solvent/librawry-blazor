@@ -38,12 +38,15 @@ else
 
 @code {
 	[Parameter]
-	[SupplyParameterFromQuery(Name = "search")]
-	public string QueryText { get; set; } = "";
+	[SupplyParameterFromQuery(Name = "q")]
+	public string? QueryText { get; set; }
 
 	private IEnumerable<ListResponse>? ListResponse;
 
 	protected override async Task OnParametersSetAsync() {
+		if (string.IsNullOrEmpty(QueryText)) {
+			return;
+		}
 		ListResponse = await unitOfWork.TitleRepository.GetList(new ListRequest {
 			Search = QueryText
 		});

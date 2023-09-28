@@ -8,10 +8,10 @@
 
 @code {
 	[Parameter]
-	[SupplyParameterFromQuery(Name = "search")]
-	public string QueryText { get; set; } = "";
+	[SupplyParameterFromQuery(Name = "q")]
+	public string? QueryText { get; set; }
 
 	private void DoSearch() {
-		Navigation.NavigateTo($"/search?search={QueryText}");
+		Navigation.NavigateTo($"/search?q={QueryText}");
 	}
 }
