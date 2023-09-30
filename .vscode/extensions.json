@@ -1,0 +1,10 @@
+{
+	"recommendations": [
+		"ms-dotnettools.vscode-dotnet-runtime",
+		"trongthanh.theme-boxythemekit",
+		"ms-dotnettools.csharp",
+		"ms-dotnettools.csdevkit",
+		"editorconfig.editorconfig",
+		"dbaeumer.vscode-eslint"
+	]
+}
