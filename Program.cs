@@ -8,8 +8,8 @@ var cons = builder.Configuration.GetConnectionString("SqliteDatabase");
 
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddDbContext<LibrawryContext>(options => options.UseSqlite(cons));
-builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
+builder.Services.AddDbContextFactory<LibrawryContext>(options => options.UseSqlite(cons));
+builder.Services.AddTransient<IUnitOfWorkFactory, UnitOfWorkFactory>();
 
 var app = builder.Build();
 

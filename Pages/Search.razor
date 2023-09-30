@@ -2,7 +2,7 @@
 
 @using librawry.portable;
 @using librawry.portable.repo.titles;
-@inject IUnitOfWork unitOfWork;
+@inject IUnitOfWorkFactory factory;
 
 @if (@ListResponse == null)
 {
@@ -44,11 +44,12 @@ else
 	private IEnumerable<ListResponse>? ListResponse;
 
 	protected override async Task OnParametersSetAsync() {
-		if (string.IsNullOrEmpty(QueryText)) {
-			return;
-		}
-		ListResponse = await unitOfWork.TitleRepository.GetList(new ListRequest {
-			Search = QueryText
-		});
+		ListResponse = null;
+		using var unitOfWork = factory.Create();
+		ListResponse = await unitOfWork
+			.TitleRepository
+			.GetList(new ListRequest {
+				Search = QueryText
+			});
 	}
 }
